@@ -15,7 +15,7 @@ load("@com_google_googleapis//:repository_rules.bzl", "switched_rules_by_languag
 
 switched_rules_by_language(
     name = "com_google_googleapis_imports",
-    gapic = True,    
+    gapic = True,
     grpc = True,
     java = True,
     php = True,
@@ -59,10 +59,14 @@ rules_proto_toolchains()
 
 # Note gapic-generator contains java-specific and common code, that is why it is imported in common
 # section
-http_archive(
+# http_archive(
+#     name = "com_google_api_codegen",
+#     strip_prefix = "gapic-generator-7b32072e58757249cadfb4bf06c801a49ecb8a33",
+#     urls = ["https://github.com/vam-google/gapic-generator/archive/7b32072e58757249cadfb4bf06c801a49ecb8a33.zip"],
+# )
+local_repository(
     name = "com_google_api_codegen",
-    strip_prefix = "gapic-generator-2.7.0",
-    urls = ["https://github.com/googleapis/gapic-generator/archive/v2.7.0.zip"],
+    path = "/usr/local/google/home/betterbrent/Code/gapic-generator"
 )
 
 http_archive(
@@ -141,9 +145,9 @@ load("@com_google_api_codegen//rules_gapic/php:php_gapic_repositories.bzl", "php
 
 php(
     name = "php",
-    prebuilt_phps = ["@com_google_api_codegen//rules_gapic/php:resources/php-7.1.30_linux_x86_64.tar.gz"],
-    strip_prefix = "php-7.1.30",
-    urls = ["https://www.php.net/distributions/php-7.1.30.tar.gz"],
+    prebuilt_phps = [],
+    strip_prefix = "php-7.4.11",
+    urls = ["https://www.php.net/distributions/php-7.4.11.tar.gz"],
 )
 
 php_gapic_repositories()
